@@ -1,8 +1,1 @@
-{
-  "dbConfig": {
-    "host": "localhost",
-    "user": "root",
-    "password": "mypass123",
-    "database": "ecomerce_dagung_db"
-  }
-}
+
