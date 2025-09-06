@@ -1,0 +1,43 @@
+.card {
+  border-radius: 20px;
+  margin-top: 6rem;
+}
+
+#productPrice {
+  color: #6a6a6a;
+}
+
+#productName {
+  color: #6a6a6a;
+}
+
+#productImage {
+  border-radius: 20px;
+}
+
+#addToCartBtn {
+  border-radius: 30px;
+  background-color: #648286;
+  color: white;
+  /* make smooth after hover */
+}
+#addToCartBtn:hover {
+  background-color: #4b636e;
+  /* make smooth transform */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  transform: scale(1.05);
+  color: white;
+}
+
+#btnKembali {
+  border-radius: 30px;
+  background-color: #6c757d;
+}
+
+#btnKembali:hover {
+  background-color: #42484d;
+  /* make smooth transform */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  transform: scale(1.05);
+  color: white;
+}

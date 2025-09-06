@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelola Transaksi</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="/admin/css/transactions.css" rel="stylesheet" />
+    <style>
+      .status-badge {
+        padding: 0.35em 0.65em;
+        border-radius: 0.25rem;
+        font-size: 0.875em;
+        font-weight: 700;
+      }
+
+      .status-pending {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      .status-settlement,
+      .status-capture {
+        background-color: #d4edda;
+        color: #155724;
+      }
+
+      .status-deny,
+      .status-cancel,
+      .status-expire {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      .status-refund {
+        background-color: #e2e3e5;
+        color: #383d41;
+      }
+
+      .transaction-detail {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <main class="container-fluid py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Kelola Transaksi</h2>
+        <div class="d-flex gap-2 align-items-center">
+          <div class="input-group" style="width: 300px">
+            <input
+              type="text"
+              id="searchInput"
+              class="form-control"
+              placeholder="Cari order ID atau nama customer..."
+            />
+            <span class="input-group-text">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+          <select id="statusFilter" class="form-select" style="width: 200px">
+            <option value="all">Semua Status</option>
+            <option value="pending">Pending</option>
+            <option value="settlement">Sukses</option>
+            <option value="capture">Tertangkap</option>
+            <option value="deny">Ditolak</option>
+            <option value="cancel">Dibatalkan</option>
+            <option value="expire">Kadaluarsa</option>
+            <option value="refund">Dikembalikan</option>
+          </select>
+          <select id="sortSelect" class="form-select" style="width: 200px">
+            <option value="terbaru">Terbaru</option>
+            <option value="terlama">Terlama</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tabel Transaksi -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover" id="transactionsTable">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Metode</th>
+                  <th>Waktu</th>
+                  <!-- <th>Aksi</th> -->
+                </tr>
+              </thead>
+              <tbody id="transactionsTableBody">
+                <!-- Data akan diisi oleh JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="position-fixed bottom-0 end-0 m-3">
+      <a href="/admin/dashboard" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Kembali ke Dashboard
+      </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/auth.js"></script>
+    <script type="module" src="/admin/js/transactions.js"></script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+/* Action Cards */
+
+.action-card {
+  transition: all 0.3s ease;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.action-card i {
+  transition: all 0.3s ease;
+}
+
+.action-card:hover i {
+  transform: scale(1.1);
+}
+
+/* Stat Cards */
+.stat-card {
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Warna khusus untuk action cards */
+.action-card:nth-child(1) {
+  border-left: 4px solid #000000;
+}
+.action-card:nth-child(2) {
+  border-left: 4px solid #1cc88a;
+}
+.action-card:nth-child(3) {
+  border-left: 4px solid #36b9cc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .action-card,
+  .stat-card {
+    margin-bottom: 15px;
+  }
+}
+
+/* Animasi */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Delay animasi untuk tiap card */
+.action-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.action-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.action-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.stat-card:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.stat-card:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.stat-card:nth-child(3) {
+  animation-delay: 0.6s;
+}

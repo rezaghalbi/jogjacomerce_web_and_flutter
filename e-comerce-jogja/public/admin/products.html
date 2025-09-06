@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelola Produk - Admin</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="/admin/css/products.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <main class="container-fluid py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Kelola Produk</h2>
+        <button class="btn btn-primary" id="addProductBtn">
+          <i class="fas fa-plus me-2"></i>Tambah Produk
+        </button>
+      </div>
+
+      <!-- Filter Section -->
+      <div class="card filter-section mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Filter Produk</h5>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label for="categoryFilter" class="form-label">Kategori</label>
+              <select class="form-select" id="categoryFilter">
+                <option value="">Semua Kategori</option>
+                <!-- Options akan diisi oleh JavaScript -->
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="searchInput" class="form-label">Cari Produk</label>
+              <input
+                type="text"
+                class="form-control"
+                id="searchInput"
+                placeholder="Nama produk..."
+              />
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+              <button class="btn btn-outline-secondary" id="resetFilterBtn">
+                <i class="fas fa-undo me-2"></i>Reset Filter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Tambah/Edit Produk -->
+      <div
+        class="modal fade"
+        id="productModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitle">Tambah Produk Baru</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form id="productForm" enctype="multipart/form-data">
+              <div class="modal-body">
+                <input type="hidden" id="productId" />
+                <div class="mb-3">
+                  <label for="productName" class="form-label"
+                    >Nama Produk</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="productName"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="productDescription" class="form-label"
+                    >Deskripsi</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="productDescription"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="productPrice" class="form-label">Harga</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="productPrice"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="productStock" class="form-label">Stok</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="productStock"
+                      required
+                    />
+                  </div>
+                </div>
+                <!-- Dropdown untuk kategori -->
+                <div class="mb-3">
+                  <label for="productCategory" class="form-label"
+                    >Kategori</label
+                  >
+                  <select class="form-select" id="productCategory" required>
+                    <option value="">Pilih Kategori</option>
+                    <!-- Options akan diisi oleh JavaScript -->
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="productImage" class="form-label"
+                    >Gambar Produk</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="productImage"
+                    accept="image/*"
+                  />
+                  <small class="text-muted">Ukuran maksimal 2MB</small>
+                  <div id="imagePreview" class="mt-2"></div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  id="saveProductBtn"
+                >
+                  Simpan
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabel Produk -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover" id="productsTable">
+              <thead>
+                <tr>
+                  <th>Gambar</th>
+                  <th>Nama Produk</th>
+                  <th>Harga</th>
+                  <th>Stok</th>
+                  <th>Kategori</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <!-- Data akan diisi oleh JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="btn btn-secondary position-fixed bottom-0 end-0 m-3"
+        id="backToDashboardBtn"
+      >
+        <a
+          href="/admin/dashboard"
+          class="btn btn-secondary me-2 text-white text-decoration-none"
+        >
+          <i class="fas fa-arrow-left me-2"></i>Kembali ke Dashboard
+        </a>
+      </button>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/auth.js"></script>
+    <script src="/admin/js/products.js"></script>
+  </body>
+</html>

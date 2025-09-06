@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelola User</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="/admin/css/users.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <main class="container-fluid py-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="d-inline-block">Kelola User</h2>
+        </div>
+        <div class="d-flex gap-2">
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Cari user..."
+          />
+          <select id="sortSelect" class="form-select">
+            <option value="username:asc">Username (A-Z)</option>
+            <option value="username:desc">Username (Z-A)</option>
+            <option value="nama_lengkap:asc">Nama (A-Z)</option>
+            <option value="nama_lengkap:desc">Nama (Z-A)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th>Username</th>
+                  <th>Nama Lengkap</th>
+                  <th>Email</th>
+                  <th>Telepon</th>
+                  <th>Alamat</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <!-- Data akan diisi oleh JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit User Modal -->
+      <div
+        class="modal fade"
+        id="editUserModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit User</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form id="editUserForm">
+              <div class="modal-body">
+                <input type="hidden" id="editUserId" />
+                <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editUsername"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Nama Lengkap</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editFullName"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="editEmail"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Telepon</label>
+                  <input type="tel" class="form-control" id="editPhone" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Alamat</label>
+                  <textarea
+                    class="form-control"
+                    id="editAddress"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Batal
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Simpan Perubahan
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-secondary position-fixed bottom-0 end-0 m-3">
+        <a href="/admin/dashboard" class="btn btn-secondary me-2">
+          <i class="fas fa-arrow-left me-2"></i>Kembali
+        </a>
+      </button>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/auth.js"></script>
+    <script src="/admin/js/users.js"></script>
+  </body>
+</html>
